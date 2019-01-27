@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+
 const layout = require('./views/layout');
+const { db } = require('./models/index');
 
 const app = express();
 
