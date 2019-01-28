@@ -12,14 +12,17 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use('/wiki', require('./routes/wiki'));
+app.use('/user', require('./routes/user'));
+
 app.get('/', (req, res, next) => {
-  res.send(layout(''));
+  res.redirect('wiki');
 });
 
 const PORT = 3000;
 
 const init = async () => {
-  await db.sync({ force: true });
+  await db.sync();
 
   app.listen(PORT, () => {
     console.log(`App is listening on port:${PORT}`);
